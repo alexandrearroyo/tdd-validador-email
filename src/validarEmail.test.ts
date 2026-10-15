@@ -6,6 +6,10 @@ describe("Validador de email", () => {
     expect(esEmailValido("ana@gmail.com")).toBe(true);
   });
 
+  it("acepta una extensión de 2 letras", () => {
+    expect(esEmailValido("ana@sapo.pt")).toBe(true);
+  });
+
   it("rechaza un email sin arroba", () => {
     expect(esEmailValido("anagmail.com")).toBe(false);
   });
