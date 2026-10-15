@@ -30,4 +30,9 @@ describe("Validador de email", () => {
   it("rechaza una extensión de menos de 2 letras", () => {
     expect(esEmailValido("ana@gmail.c")).toBe(false);
   });
+
+  it("rechaza un email con espacios", () => {
+    expect(esEmailValido("ana perez@gmail.com")).toBe(false);
+    expect(esEmailValido("ana@gmail .com")).toBe(false);
+  });
 });
