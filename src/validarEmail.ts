@@ -1,28 +1,39 @@
+// Cada regla es una función chiquita que responde una sola pregunta.
+// Si TODAS las reglas dicen "sí", el email es válido.
+type Regla = (email: string) => boolean;
+
+const usuarioDe = (email: string): string => email.split("@")[0] ?? "";
+const dominioDe = (email: string): string => email.split("@")[1] ?? "";
+const extensionDe = (dominio: string): string => dominio.split(".").pop() ?? "";
+
+const noTieneEspacios: Regla = (email) => !email.includes(" ");
+
+const tieneUnSoloArroba: Regla = (email) => email.split("@").length === 2;
+
+const tieneUsuario: Regla = (email) => usuarioDe(email) !== "";
+
+const tieneDominio: Regla = (email) => dominioDe(email) !== "";
+
+const dominioTienePunto: Regla = (email) => dominioDe(email).includes(".");
+
+const dominioNoEmpiezaNiTerminaConPunto: Regla = (email) => {
+  const dominio = dominioDe(email);
+  return !dominio.startsWith(".") && !dominio.endsWith(".");
+};
+
+const extensionTieneAlMenosDosLetras: Regla = (email) =>
+  extensionDe(dominioDe(email)).length >= 2;
+
+const REGLAS: Regla[] = [
+  noTieneEspacios,
+  tieneUnSoloArroba,
+  tieneUsuario,
+  tieneDominio,
+  dominioTienePunto,
+  dominioNoEmpiezaNiTerminaConPunto,
+  extensionTieneAlMenosDosLetras,
+];
+
 export function esEmailValido(email: string): boolean {
-  if (email.includes(" ")) {
-    return false;
-  }
-  const partes = email.split("@");
-  if (partes.length !== 2) {
-    return false;
-  }
-  const usuario = partes[0];
-  const dominio = partes[1];
-  if (usuario === "") {
-    return false;
-  }
-  if (dominio === "") {
-    return false;
-  }
-  if (!dominio.includes(".")) {
-    return false;
-  }
-  if (dominio.startsWith(".") || dominio.endsWith(".")) {
-    return false;
-  }
-  const extension = dominio.split(".").pop();
-  if (extension === undefined || extension.length < 2) {
-    return false;
-  }
-  return true;
+  return REGLAS.every((regla) => regla(email));
 }
