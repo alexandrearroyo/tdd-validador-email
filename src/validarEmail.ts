@@ -17,6 +17,9 @@ export function esEmailValido(email: string): boolean {
   if (!dominio.includes(".")) {
     return false;
   }
+  if (dominio.startsWith(".") || dominio.endsWith(".")) {
+    return false;
+  }
   const extension = dominio.split(".").pop();
   if (extension === undefined || extension.length < 2) {
     return false;
