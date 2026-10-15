@@ -1,3 +1,3 @@
 export function esEmailValido(email: string): boolean {
-  return true;
+  return email.includes("@");
 }
