@@ -35,4 +35,9 @@ describe("Validador de email", () => {
     expect(esEmailValido("ana perez@gmail.com")).toBe(false);
     expect(esEmailValido("ana@gmail .com")).toBe(false);
   });
+
+  it("rechaza un dominio que empieza o termina con punto", () => {
+    expect(esEmailValido("ana@.com")).toBe(false);
+    expect(esEmailValido("ana@gmail.com.")).toBe(false);
+  });
 });
