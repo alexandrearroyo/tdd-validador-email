@@ -22,4 +22,12 @@ describe("Validador de email", () => {
   it("rechaza un email sin dominio después del arroba", () => {
     expect(esEmailValido("ana@")).toBe(false);
   });
+
+  it("rechaza un dominio sin punto", () => {
+    expect(esEmailValido("ana@gmail")).toBe(false);
+  });
+
+  it("rechaza una extensión de menos de 2 letras", () => {
+    expect(esEmailValido("ana@gmail.c")).toBe(false);
+  });
 });
