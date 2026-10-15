@@ -1,0 +1,19 @@
+# Integración continua: GitHub corre todos los tests automáticamente
+# cada vez que alguien sube código (push) o abre un Pull Request.
+name: Tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run test:una-vez
