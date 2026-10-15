@@ -14,4 +14,12 @@ describe("Validador de email", () => {
     expect(esEmailValido("ana@@gmail.com")).toBe(false);
     expect(esEmailValido("ana@juan@gmail.com")).toBe(false);
   });
+
+  it("rechaza un email sin usuario antes del arroba", () => {
+    expect(esEmailValido("@gmail.com")).toBe(false);
+  });
+
+  it("rechaza un email sin dominio después del arroba", () => {
+    expect(esEmailValido("ana@")).toBe(false);
+  });
 });
