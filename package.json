@@ -1,0 +1,21 @@
+{
+  "name": "tdd-validador-email",
+  "version": "1.0.0",
+  "description": "Ejemplo práctico de TDD (Test-Driven Development) en TypeScript: un validador de emails construido test por test.",
+  "type": "module",
+  "scripts": {
+    "test": "vitest",
+    "test:una-vez": "vitest run",
+    "demo": "tsx src/demo.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": ["tdd", "typescript", "vitest", "agile", "software-craftsmanship"],
+  "author": "Alex",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.4"
+  }
+}
