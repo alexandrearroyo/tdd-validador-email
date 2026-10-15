@@ -1,3 +1,4 @@
 export function esEmailValido(email: string): boolean {
-  return email.includes("@");
+  const partes = email.split("@");
+  return partes.length === 2;
 }
